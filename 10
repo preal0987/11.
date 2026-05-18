@@ -1,0 +1,12 @@
+clear; clc;
+
+P = readtable('penguins.csv');
+
+P.BillRatio = P.bill_length_mm ./ P.bill_depth_mm;
+
+LongBill = P(P.BillRatio >= 2.8, :);
+
+disp(LongBill(:, {'species', 'bill_length_mm', 'bill_depth_mm', 'BillRatio'}))
+
+billRatioData = LongBill{:, 'BillRatio'};
+disp(billRatioData)
