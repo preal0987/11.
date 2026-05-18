@@ -1,0 +1,13 @@
+clear; clc;
+
+P = readtable('penguins.csv');
+
+P.Properties.VariableNames
+
+BigPenguins = P(P.body_mass_g >= 4500, :);
+
+disp(BigPenguins(:, {'species', 'island', 'body_mass_g', 'sex'}))
+
+P.species = string(P.species);
+LargeGentoo = P(P.species == "Gentoo" & P.body_mass_g >= 5000, :);
+disp(LargeGentoo) 
