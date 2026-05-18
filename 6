@@ -1,0 +1,8 @@
+A.ShellRatio = A.ShellWeight ./ A.WholeWeight;
+
+HardShell = A(A.ShellRatio >= 0.25 & A.Rings >= 12, :);
+
+disp(HardShell(:, {'Sex', 'WholeWeight', 'ShellWeight', 'ShellRatio', 'Rings'}))
+
+ratioData = HardShell{:, 'ShellRatio'};
+disp(ratioData)
