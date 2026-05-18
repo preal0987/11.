@@ -1,0 +1,26 @@
+clear; clc;
+
+B = readtable('bank-full.csv');
+
+B.Properties.VariableNames
+
+age = B.age
+balance = B.balance
+loan = B.loan
+y = B.y
+
+T1 = B(age >= 40 & balance >= 2000 & loan == "no", :);
+disp(T1)
+
+T2 = T1(:, {'age', 'balance', 'y'});
+
+T2.NewFlag = T2.y == "yes";
+disp(T2)
+
+Subscribed = T2(T2.NewFlag == 1, :)
+
+balanceVec = Subscribed{:, 'balance'}
+
+avgBalance = mean(balanceVec)
+
+writetable(Subscribed, 'bank_selected.csv');
