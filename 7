@@ -1,0 +1,15 @@
+clear; clc;
+
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/forest-fires/forestfires.csv';
+
+A = readtable(url);
+
+temp = A.temp
+RH = A.RH
+wind = A.wind
+rain = A.rain
+area = A.area
+
+HotDryFires = A(temp >= 25 & RH <= 35, :);
+
+disp(HotDryFires(:, {'month', 'day', 'temp', 'RH', 'wind', 'area'}))
