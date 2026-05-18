@@ -1,0 +1,16 @@
+clear; clc;
+
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data';
+
+A = readtable(url, 'FileType', 'text', 'ReadVariableNames', false);
+
+A.Properties.VariableNames = {'Sex', 'Length', 'Diameter', ...
+    'Height', 'WholeWeight', 'ShuckedWeight', ...
+    'VisceraWeight', 'ShellWeight', 'Rings'};
+
+disp(A(:, {'WholeWeight', 'ShellWeight', 'Rings'}))
+
+A.Sex = string(A.Sex);
+OldMale = A(A.Sex == 'M' & A.Rings >= 15, :);
+
+disp(OldMale(:, {'Sex', 'Length', 'WholeWeight', 'Rings'}))
